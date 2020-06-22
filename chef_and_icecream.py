@@ -9,11 +9,19 @@ def can_icecream_be_served(A):
                 return("NO")
             else:
                 shops_money[0] -= 1
+                shops_money[1] += 1
         else:
-            if(shops_money[0] < 2 and shops_money[1] < 1):
-                return("NO")
+            if(shops_money[1] < 1):
+                if(shops_money[0] < 2):
+                    return("NO")
+                else:
+                    shops_money[0] -= 2
+                    shops_money[2] += 1
             else:
-                shops_money[0] -= 2
+                shops_money[1] -= 1
+                shops_money[2] += 1
+            
+
     return("YES")
 
 
