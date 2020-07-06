@@ -1,3 +1,6 @@
+from adj_list import adjList
+from tree_MEX import *
+
 t = int(input())
 for i in range(t):
     n = int(input())

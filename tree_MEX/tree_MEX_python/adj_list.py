@@ -1,3 +1,6 @@
+from linked_list import *
+
+
 class adjList:
     def __init__(self, n):
         self.l = [linkList(i) for i in range(1, n+1)]
