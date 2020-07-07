@@ -1,51 +1,34 @@
-class Point:
-    def __init__(self, X, Y):
-        self.X = X
-        self.Y = Y
 
 
-class Stack:
+class Dict:
     def __init__(self):
-        self.stack = []
-        self.N = 0
+        self.d_X = {}
+        self.d_Y = {}
 
-    def stackInserter(self, X, Y):
-        if(self.N == 0):
-            self.stack.append([Point(X, Y)])
-            self.N += 1
-        else:
-            for i in range(len(self.stack)):
-                for j in range(len(self.stack[i])):
-                    if(self.stack[i][j].X == X or self.stack[i][j].Y == Y):
-                        self.stack[i].append(Point(X, Y))
-                        self.N += 1
-                        if(len(self.stack[i]) == 4):
-                            self.stack.pop(i)
-                        return(1)
-            self.stack.append([Point(X, Y)])
-            self.N += 1
-        return(1)
+    def insert(self, X, Y):
+        try:
+            self.d_X.pop(X)
+        except KeyError:
+            self.d_X[X] = 1
 
-    def pointRetriever(self):
-        X = []
-        Y = []
-        for i in range(len(self.stack[0])):
-            if(self.stack[0][i].X not in X):
-                X.append(self.stack[0][i].X)
-            else:
-                X.remove(self.stack[0][i].X)
-            if(self.stack[0][i].Y not in Y):
-                Y.append(self.stack[0][i].Y)
-            else:
-                Y.remove(self.stack[0][i].Y)
-        print(str(X[0])+" "+str(Y[0]))
+        try:
+            self.d_Y.pop(Y)
+        except KeyError:
+            self.d_Y[Y] = 1
+
+    def get(self):
+        for i in self.d_X.keys():
+            x = i
+        for i in self.d_Y.keys():
+            y = i
+        print(str(x)+" "+str(y))
 
 
 T = int(input())
 for i in range(T):
     N = int(input())
-    S = Stack()
+    S = Dict()
     for j in range((4*N)-1):
         P = input().split(" ")
-        S.stackInserter(int(P[0]), int(P[1]))
-    S.pointRetriever()
+        S.insert(int(P[0]), int(P[1]))
+    S.get()
