@@ -23,6 +23,7 @@ def maxGlide(start, stop):
                             sumGlide += x
                             if(sumGlide > maxGlideVal):
                                 maxGlideVal = sumGlide
+                            sumGlide -= x
                 else:
                     sumGlide = -1
                     break
@@ -41,6 +42,7 @@ def maxGlide(start, stop):
                             sumGlide += x
                             if(sumGlide > maxGlideVal):
                                 maxGlideVal = sumGlide
+                            sumGlide -= x
                 else:
                     sumGlide = -1
                     break
@@ -55,7 +57,19 @@ def maxGlide(start, stop):
 def updater(b, c):
     global mem
     A[b-1] = str(c)
-    mem = {}
+    #mem = {}
+    mem2 = {}
+    for i in mem.keys():
+        x = i.split(",")
+        start = int(x[0])
+        stop = int(x[1])
+        if(start < stop):
+            if(b < start or b > stop):
+                mem2[i] = mem[i]
+        else:
+            if(b > start or b < stop):
+                mem2[i] = mem[i]
+    mem = mem2
 
 
 mem = {}
