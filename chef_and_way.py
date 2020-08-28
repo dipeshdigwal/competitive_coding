@@ -1,8 +1,3 @@
-from sys import setrecursionlimit
-
-setrecursionlimit(10e5)
-
-
 def bruteForce(A, K, flag):
     global maxi
     global prod
@@ -46,13 +41,40 @@ def bruteForce_dp(A, i, K):
             return(mini)
 
 
+def bruteForce_non_recursive(A, K):
+    N = len(A)
+    i = N-1
+
+    while(i > -1):
+        mini = 10e500000
+        prod = 1
+        if(i == 0):
+            looper = 1
+        else:
+            if(i+K >= N):
+                looper = N
+            else:
+                looper = i+K
+        for j in range(i, looper):
+            prod = int(A[j])
+            if(j < N-1):
+                prod *= memory[j+1]
+            if(prod < mini):
+                mini = prod
+            prod = 1
+        memory[i] = mini
+        i -= 1
+    return(memory[0])
+
+
 memory = {}
 a = input().split(" ")
 N = int(a[0])
 K = int(a[1])
 A = input().split(" ")
-#maxi = 10e10
-#prod = int(A[0])
-#bruteForce(A[1:], K, 0)
-#print(int(maxi) % (10e9+7))
-print(bruteForce_dp(A, 0, K) % int(10e8+7))
+# maxi = 10e10
+# prod = int(A[0])
+# bruteForce(A[1:], K, 0)
+# print(int(maxi) % (10e9+7))
+# print(bruteForce_dp(A, 0, K) % int(10e8+7))
+print(bruteForce_non_recursive(A, K) % int(10e8+7))
