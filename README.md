@@ -1,3 +1,3 @@
 # competitive_coding
 
-competitive coding problems solutions.
+Their is a solution of many competitive coding question so you can go through it.
